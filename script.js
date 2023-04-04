@@ -1,6 +1,8 @@
 const gridContainer = document.querySelector('.grid-container');
 const generatorButton = document.querySelector('.grid-button');
+const eraserButton = document.querySelector('.eraser-button');
 let gridItem;
+let eraserToggle = false;
 
 function makeGrid(rows, cols) {
     gridContainer.style.setProperty('--grid-rows', rows);
@@ -12,7 +14,7 @@ function makeGrid(rows, cols) {
     }
     gridItem = document.querySelectorAll('.grid-item');
     gridItem.forEach(item => {
-        item.addEventListener('mouseover', () => item.classList.add('toggled'));
+        item.addEventListener('click', () => item.classList.add('toggled'));
     })
     
 }
@@ -21,9 +23,41 @@ generatorButton.addEventListener('click', () => {
     while (gridContainer.hasChildNodes()) {
         gridContainer.removeChild(gridContainer. firstChild)
     }
+    let x;
+    let z;
 
-    let x = prompt('How many rows and columns do you want?');
-    makeGrid(x, x);
+    function gridSize() {
+        x = +prompt('Pick a number between 0 and 100');
+        z = x;
+        if (x > 100 || x < 0 || isNaN(x)) {
+            alert('Please input a valid number');
+            gridSize();
+            return;
+        } else {
+            return [x, z]
+        }
+    }
+    gridSize()
+    makeGrid(x, z);
+})
+
+eraserButton.addEventListener('click', () => {
+    if (!eraserToggle) {
+        gridItem = document.querySelectorAll('.grid-item');
+        gridItem.forEach(item => {
+            item.addEventListener('click', () => item.classList.remove('toggled'));
+            item.removeEventListener('click', () => item.classList.add('toggled'));
+        })
+        eraserToggle = true;
+    } else {
+        gridItem = document.querySelectorAll('.grid-item');
+        gridItem.forEach(item => {
+            item.removeEventListener('click', () => item.classList.remove('toggled'));
+            item.addEventListener('click', () => item.classList.add('toggled'));
+        })
+        eraserToggle = false;
+    }
+
 })
 
 makeGrid(16, 16);

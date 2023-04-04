@@ -2,6 +2,8 @@ body {
     display:flex;
     flex-direction: column;
     padding: 0 1em;
+    background-color: #DA2C38;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 
 .top-section {
@@ -13,12 +15,14 @@ body {
     display: grid;
     grid-template-rows: repeat(var(--grid-rows), 1fr);
     grid-template-columns: repeat(var(--grid-cols), 1fr);
-    width: 960px;
-    height: 960px;
+    width: 700px;
+    height: 700px;
+    background-color: #ffffff;
+    border: 3px solid black;
 }
 
 .grid-item {
-    border: 1px solid black;
+    border: 1px solid #353b3c;
 }
 
 .toggled {
@@ -27,5 +31,29 @@ body {
 
 .content {
     display:flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 16px;
+}
+
+.button-container > * {
+    padding: 8px 16px;
+    font-size: 24px;
+    border: 2px solid
+}
+
+button:hover {
+    background-color:rgb(221, 221, 221);
+}
+
+button:active {
+    background-color:rgb(194, 194, 194)
 }
